@@ -45,7 +45,7 @@
         }
         .main-wrap {
             position: relative;
-            width: 1200px;
+            width: 1100px;
             margin: auto;
         }
     }
