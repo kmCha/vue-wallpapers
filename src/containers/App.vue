@@ -1,9 +1,25 @@
 <template>
     <div id="app">
         <transition name="fade">
-            <keep-alive include="Index">
-                <router-view/>
-            </keep-alive>
+            <el-container>
+                <el-header>
+                    <div class="main-wrap">
+                        <span class="site-title">kM Wallpaper</span>
+                    </div>
+                </el-header>
+                <el-main>
+                    <div class="main-wrap">
+                        <keep-alive include="Index">
+                            <router-view/>
+                        </keep-alive>
+                    </div>
+                </el-main>
+                <el-footer>
+                    <div class="main-wrap">
+                        footer
+                    </div>
+                </el-footer>
+            </el-container>
         </transition>
     </div>
 </template>
@@ -16,6 +32,23 @@
 
 <style lang="less">
     @import "../css/_mixin.less";
+
+    #app {
+        .el-header {
+            line-height: 60px;
+            box-shadow: inset 0 0 5px #ccc;
+            background-color: #eee;
+            .site-title {
+                font-weight: bold;
+                font-size: 20px;
+            }
+        }
+        .main-wrap {
+            position: relative;
+            width: 1200px;
+            margin: auto;
+        }
+    }
 
     .fade-enter-active,
     .fade-leave-active {
