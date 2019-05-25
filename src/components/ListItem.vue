@@ -1,6 +1,6 @@
 <template>
     <div class="list-item">
-        <div class="list-item-cover" :style="{'background-image': `url(${item.image.thumb.url})`}">
+        <div class="list-item-cover" @click="download" :style="{'background-image': `url(${item.image.thumb.url})`}">
             <div class="list-item-dimention">
                 {{item.width + ' X ' + item.height}}
             </div>
