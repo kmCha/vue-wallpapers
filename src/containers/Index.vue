@@ -2,7 +2,14 @@
     <div class="container-index">
         <list-item v-for="item in list" :key="item.id" :item="item"></list-item>
 
-        <el-pagination background layout="prev, pager, next, jumper" :total="total" :page-size="pageSize" @current-change="pageChange"></el-pagination>
+        <el-pagination
+            background
+            layout="prev, pager, next, jumper"
+            :current-page="page"
+            :total="total"
+            :page-size="pageSize"
+            @current-change="pageChanged">
+        </el-pagination>
     </div>
 </template>
 
@@ -23,8 +30,13 @@
                 pageSize: 1
             };
         },
+        watch: {
+            '$route.params.page': function(value) {
+                this.changePage(Number(value))
+            }
+        },
         created() {
-            this.getList();
+            this.changePage(Number(this.$route.params.page))
         },
         methods: {
             getList() {
@@ -36,9 +48,17 @@
                     }
                 });
             },
-            pageChange(page) {
+            changePage(page) {
                 this.page = page;
                 this.getList();
+            },
+            pageChanged(page) {
+                this.$router.push({
+                    name: 'index',
+                    params: {
+                        page
+                    }
+                })
             }
         }
     };

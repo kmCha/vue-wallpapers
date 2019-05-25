@@ -6,13 +6,13 @@ const Index = () => import(/* webpackChunkName:'Index' */'../../containers/Index
 
 var routes = [
     {
-      path: '/',
+      path: '/:page',
       name: 'index',
       component: Index
     },
     {
       path: '*',
-      redirect: '/'
+      redirect: '/1'
     }
   ]
 
