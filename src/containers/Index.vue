@@ -1,5 +1,5 @@
 <template>
-    <div class="container-index">
+    <div class="container-index" v-loading="loading">
         <list-item v-for="item in list" :key="item.id" :item="item"></list-item>
 
         <el-pagination
@@ -27,7 +27,8 @@
                 list: [],
                 page: 1,
                 total: 1,
-                pageSize: 1
+                pageSize: 1,
+                loading: false
             };
         },
         watch: {
@@ -40,12 +41,16 @@
         },
         methods: {
             getList() {
+                this.loading = true;
                 getList({ page: this.page }).then(res => {
                     if (res.code === 1) {
                         this.list = res.list;
                         this.total = res.total;
                         this.pageSize = res.pageSize;
                     }
+                    this.loading= false;
+                }).catch(err => {
+                    this.loading= false;
                 });
             },
             changePage(page) {
