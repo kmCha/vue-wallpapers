@@ -5,6 +5,8 @@
                 <el-header>
                     <div class="main-wrap">
                         <span class="site-title">kM Wallpaper</span>
+                        <router-link class="site-nav-tab" :to="{name: 'all', params: {page: $route.params.page || 1}}">全部壁纸</router-link>
+                        <router-link class="site-nav-tab" :to="{name: 'random'}">随机壁纸</router-link>
                     </div>
                 </el-header>
                 <el-main>
@@ -41,6 +43,14 @@
             .site-title {
                 font-weight: bold;
                 font-size: 20px;
+                margin-right: 20px;
+            }
+            .site-nav-tab {
+                display: inline-block;
+                margin: 0 5px;
+                &.router-link-active {
+                    color: #409EFF;
+                }
             }
         }
         .main-wrap {

@@ -18,7 +18,7 @@
     import { getList } from "../js/app/api.js";
 
     export default {
-        name: "Index",
+        name: "All",
         components: {
             "list-item": ListItem
         },
@@ -59,7 +59,7 @@
             },
             pageChanged(page) {
                 this.$router.push({
-                    name: 'index',
+                    name: 'all',
                     params: {
                         page
                     }

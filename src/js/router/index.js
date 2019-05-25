@@ -2,17 +2,23 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 // 异步加载路由写法，必须写明 webpackChunkName
-const Index = () => import(/* webpackChunkName:'Index' */'../../containers/Index')
+const All = () => import(/* webpackChunkName:'All' */'../../containers/All')
+const Random = () => import(/* webpackChunkName:'Random' */'../../containers/Random')
 
 var routes = [
     {
-      path: '/:page',
-      name: 'index',
-      component: Index
+      path: '/all/:page',
+      name: 'all',
+      component: All
+    },
+    {
+      path: '/random',
+      name: 'random',
+      component: Random
     },
     {
       path: '*',
-      redirect: '/1'
+      redirect: '/all/1'
     }
   ]
 

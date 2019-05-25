@@ -21,3 +21,19 @@ export function getList({ page = 1 }) {
         })
     })
 }
+
+export function getListRandom() {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: `${apiHost}/wallpapersRandom`,
+            type: 'GET',
+            dataType: 'json',
+            success: function (res) {
+                resolve(res)
+            },
+            error: function () {
+                reject(new Error('网络信号不好，请稍后再试'))
+            }
+        })
+    })
+}
