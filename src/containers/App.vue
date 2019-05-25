@@ -11,9 +11,9 @@
                 </el-header>
                 <el-main>
                     <div class="main-wrap">
-                        <keep-alive include="Index">
+                        <transition name="fade">
                             <router-view/>
-                        </keep-alive>
+                        </transition>
                     </div>
                 </el-main>
                 <el-footer>
@@ -57,32 +57,32 @@
             position: relative;
             width: 1100px;
             margin: auto;
-        }
-    }
 
-    .fade-enter-active,
-    .fade-leave-active {
-        .transition(all 0.5s);
-    }
-    .fade-enter-active {
-        position: relative;
-        z-index: 5;
-    }
-    .fade-leave-active {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 4;
-    }
-    .fade-enter,
-    .fade-leave-to {
-        .opacity(0);
-    }
-    .fade-enter-to,
-    .fade-leave {
-        .opacity(1);
+            .fade-enter-active,
+            .fade-leave-active {
+                .transition(all .5s);
+            }
+            .fade-enter-active {
+                position: relative;
+                z-index: 5;
+            }
+            .fade-leave-active {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 4;
+            }
+            .fade-enter,
+            .fade-leave-to {
+                .opacity(0);
+            }
+            .fade-enter-to,
+            .fade-leave {
+                .opacity(1);
+            }
+        }
     }
 
     a:focus {

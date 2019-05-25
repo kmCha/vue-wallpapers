@@ -73,6 +73,7 @@
     .container-index {
         position: relative;
         width: 100%;
+        min-height: 670px;
         overflow: hidden;
         .el-pagination {
             text-align: center;
