@@ -6,10 +6,10 @@
             </div>
         </div>
         <div class="list-item-operation" title="喜欢">
-            <div class="list-item-button">
+            <!-- <div class="list-item-button">
                 <i class="el-icon-star-off"></i>
                 {{item.likes_count}}
-            </div>
+            </div> -->
             <div class="list-item-button" title="下载" @click="download">
                 <i class="el-icon-download"></i>
                 {{item.user_count}}

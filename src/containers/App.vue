@@ -16,11 +16,6 @@
                         </transition>
                     </div>
                 </el-main>
-                <el-footer>
-                    <div class="main-wrap">
-                        footer
-                    </div>
-                </el-footer>
             </el-container>
         </transition>
     </div>
