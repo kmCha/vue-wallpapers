@@ -83,12 +83,16 @@
                 });
             },
             onSortChange() {
-                this.$router.push({
-                    name: "all",
-                    params: {
-                        page: 1
-                    }
-                });
+                if (this.page === 1) {
+                    this.getList();
+                } else {
+                    this.$router.push({
+                        name: "all",
+                        params: {
+                            page: 1
+                        }
+                    });
+                }
             }
         }
     };
