@@ -1,6 +1,16 @@
 <template>
     <div class="container-index" v-loading="loading">
+
         <list-item v-for="item in list" :key="item.id" :item="item"></list-item>
+
+        <el-select v-model="sort" placeholder="排序方式" @change="onSortChange">
+            <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+            ></el-option>
+        </el-select>
 
         <el-pagination
             background
@@ -8,8 +18,8 @@
             :current-page="page"
             :total="total"
             :page-size="pageSize"
-            @current-change="pageChanged">
-        </el-pagination>
+            @current-change="pageChanged"
+        ></el-pagination>
     </div>
 </template>
 
@@ -28,30 +38,37 @@
                 page: 1,
                 total: 1,
                 pageSize: 1,
-                loading: false
+                loading: false,
+                sort: 'date',
+                options: [
+                    {value: 'date', label: '按时间排序'},
+                    {value: 'hot', label: '按热度排序'},
+                ]
             };
         },
         watch: {
-            '$route.params.page': function(value) {
-                this.changePage(Number(value))
+            "$route.params.page": function(value) {
+                this.changePage(Number(value));
             }
         },
         created() {
-            this.changePage(Number(this.$route.params.page))
+            this.changePage(Number(this.$route.params.page));
         },
         methods: {
             getList() {
                 this.loading = true;
-                getList({ page: this.page }).then(res => {
-                    if (res.code === 1) {
-                        this.list = res.list;
-                        this.total = res.total;
-                        this.pageSize = res.pageSize;
-                    }
-                    this.loading= false;
-                }).catch(err => {
-                    this.loading= false;
-                });
+                getList({ page: this.page, sort: this.sort })
+                    .then(res => {
+                        if (res.code === 1) {
+                            this.list = res.list;
+                            this.total = res.total;
+                            this.pageSize = res.pageSize;
+                        }
+                        this.loading = false;
+                    })
+                    .catch(err => {
+                        this.loading = false;
+                    });
             },
             changePage(page) {
                 this.page = page;
@@ -59,11 +76,14 @@
             },
             pageChanged(page) {
                 this.$router.push({
-                    name: 'all',
+                    name: "all",
                     params: {
                         page
                     }
-                })
+                });
+            },
+            onSortChange() {
+                this.getList();
             }
         }
     };
@@ -74,7 +94,11 @@
         position: relative;
         width: 100%;
         min-height: 670px;
+        text-align: center;
         overflow: hidden;
+        .el-select {
+            margin: 20px 0;
+        }
         .el-pagination {
             text-align: center;
         }

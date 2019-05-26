@@ -6,10 +6,10 @@ if (__DEBUG) {
     apiHost = 'http://localhost:7001'
 }
 
-export function getList({ page = 1 }) {
+export function getList({ page = 1, sort = 'date' }) {
     return new Promise((resolve, reject) => {
         $.ajax({
-            url: `${apiHost}/wallpapers?page=${page}`,
+            url: `${apiHost}/wallpapers?page=${page}&sort=${sort}`,
             type: 'GET',
             dataType: 'json',
             success: function (res) {
