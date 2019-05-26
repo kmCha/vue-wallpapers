@@ -30,15 +30,12 @@ rm('-rf', wallpaperDir);
 // 创建wallpaper文件夹
 echo('在' + githubPage + '目录下创建wallpaper文件夹');
 mkdir('-p', wallpaperDir);
-// 复制release下面的文件到main-side里
+// 复制release下面的文件到wallpaper里
 echo('复制' + releasePath + '下面的文件到' + wallpaperDir + '里');
 cp('-R', releasePath + '/*', wallpaperDir);
 // 删除release文件夹
 echo('删除' + releasePath);
 rm('-rf', releasePath);
-// 把main-side文件夹里的index.html移动到github page里
-echo('把' + wallpaperDir + '里的index.html移动到' + githubPage + '里');
-mv(wallpaperDir + '/index.html', githubPage);
 // 切换工作目录到github page
 echo('切换工作目录到' + githubPage);
 cd(githubPage);
