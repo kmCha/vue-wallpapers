@@ -83,7 +83,12 @@
                 });
             },
             onSortChange() {
-                this.getList();
+                this.$router.push({
+                    name: "all",
+                    params: {
+                        page: 1
+                    }
+                });
             }
         }
     };
