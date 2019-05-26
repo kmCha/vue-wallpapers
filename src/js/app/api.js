@@ -37,3 +37,22 @@ export function getListRandom() {
         })
     })
 }
+
+export function download({id}) {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: `${apiHost}/wallpapers/download`,
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                id
+            },
+            success: function (res) {
+                resolve(res)
+            },
+            error: function () {
+                reject(new Error('网络信号不好，请稍后再试'))
+            }
+        })
+    })
+}

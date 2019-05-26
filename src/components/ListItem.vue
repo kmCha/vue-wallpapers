@@ -19,12 +19,22 @@
 </template>
 
 <script>
+import { download } from '../js/app/api';
+
 export default {
     name: 'list-item',
     props: ['item'],
     methods: {
         download() {
+            this.item.user_count += 1;
             window.open(this.item.image.url);
+            download({
+                id: this.item.id
+            }).then(res => {
+                if (res.user_count) {
+                    this.item.user_count = res.user_count;
+                }
+            })
         }
     }
 }
